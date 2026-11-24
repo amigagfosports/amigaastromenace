@@ -5,8 +5,8 @@ HERE=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 ROOT=$HERE
 SRC=${1:-"$ROOT/build/game-ports/sources/astromenace"}
 OUT=${2:-"$ROOT/build/os3/astromenace"}
-: "${STOVE:?Set STOVE to a verified GCC 16.2.0-open8 or later stove (staged, or a Cradle stove)}"
-python3 "$HERE/scripts/verify_open8_stove.py" "$STOVE"
+: "${STOVE:?Set STOVE to a GCC 16 stove (any; the compiler used is recorded)}"
+python3 "$HERE/scripts/record_stove.py" "$STOVE"
 P="$STOVE/prefix"
 SYS="$P/m68k-amigaos"
 DEPS=$(python3 "$ROOT/scripts/port_dependencies.py" verify --stove "$STOVE" --require zlib png freetype)
@@ -69,6 +69,7 @@ fi
 
 rm -rf "$OUT"
 mkdir -p "$OUT"
+python3 "$HERE/scripts/record_stove.py" "$STOVE" "$OUT" >/dev/null
 
 SDL_LIBS=$(SDL2_RUNTIME=-noixemul "$SDL2_CONFIG" --libs --gl)
 # GCC 16 turns array shift-up loops into a broken memmove (the OpenGPU SDK's
