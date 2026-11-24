@@ -37,3 +37,5 @@ cp icons/AstroMenace.info icons/README-AmiCradle.txt.info icons/LICENSE.md.info 
 cp icons/AstroMenace-drawer.info "$DIST/AstroMenace.info"
 cp package/Install-AstroMenace package/Install-AstroMenace.info "$DIST/"
 python3 "$ROOT/tools/pack_dist.py" --dist "$DIST" --name AstroMenace --out "$OUT"
+# which compiler built it (scripts/record_stove.py, BL-144)
+[ ! -f "$BUILD/out/build-info.json" ] || cp "$BUILD/out/build-info.json" "$OUT/"
