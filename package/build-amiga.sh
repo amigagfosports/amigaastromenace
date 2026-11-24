@@ -8,14 +8,14 @@
 # with its .sha256 and a short .readme. VERSION is the Installer script's
 # $VER. SRC is the pinned upstream source (gameports/catalog.json); when it
 # is not there, scripts/game_port_prepare.py fetches it. STOVE is a
-# published GCC 16.2.0-open8 stove (scripts/verify_open8_stove.py checks it).
+# published GCC 16.2.0-open8 or later stove (scripts/verify_open8_stove.py checks it).
 # Nothing is published from here.
 # MIT, Copyright (c) 2026 AmiCradle Team.
 set -eu
 
 HERE=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 ROOT=$(CDPATH= cd -- "$HERE/.." && pwd)
-: "${STOVE:?Set STOVE to a published GCC 16.2.0-open8 stove}"
+: "${STOVE:?Set STOVE to a published GCC 16.2.0-open8 or later stove}"
 OUT=${OUT:-"$ROOT/build-amiga-package"}
 SRC=${SRC:-"$ROOT/build/game-ports/sources/astromenace"}
 mkdir -p "$OUT"
