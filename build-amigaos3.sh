@@ -5,7 +5,7 @@ HERE=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 ROOT=$HERE
 SRC=${1:-"$ROOT/build/game-ports/sources/astromenace"}
 OUT=${2:-"$ROOT/build/os3/astromenace"}
-: "${STOVE:?Set STOVE to a verified GCC 16.2.0-open8 staging directory}"
+: "${STOVE:?Set STOVE to a verified GCC 16.2.0-open8 or later stove (staged, or a Cradle stove)}"
 python3 "$HERE/scripts/verify_open8_stove.py" "$STOVE"
 P="$STOVE/prefix"
 SYS="$P/m68k-amigaos"
